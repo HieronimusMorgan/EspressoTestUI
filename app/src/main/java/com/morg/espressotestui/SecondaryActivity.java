@@ -1,14 +1,19 @@
 package com.morg.espressotestui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-public class SecondaryActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
 
+import com.morg.espressotestui.databinding.ActivitySecondaryBinding;
+
+public class SecondaryActivity extends AppCompatActivity {
+    ActivitySecondaryBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_secondary);
+        binding = ActivitySecondaryBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        binding.buttonBack.setOnClickListener(view -> onBackPressed());
     }
 }
