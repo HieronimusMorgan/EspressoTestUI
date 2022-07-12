@@ -1,17 +1,12 @@
 package com.morg.espressotestui;
 
 import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.Espresso.pressBack;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
-import androidx.test.core.app.ActivityScenario;
-import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
-import androidx.test.filters.LargeTest;
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner;
 
 import org.junit.Rule;
@@ -25,47 +20,30 @@ public class MainActivityTest {
             new ActivityScenarioRule<MainActivity>(MainActivity.class);
 
     @Test
-    public void test_activityInView() {
-        onView(withId(R.id.main)).check(matches(isDisplayed()));
+    public void test_changeFragment() {
+        onView(withId(R.id.btn_movie_detail)).perform(click());
+
+        onView(withId(R.id.fragment_movie_detail_parent)).check(matches(isDisplayed()));
+//
+//        onView(withId(R.id.tv_movie_detail)).check(matches(isDisplayed())).perform(clearText(), typeText("This is Movie Detail Fragment"));
+        pauseTestFor(500);
+        onView(withId(R.id.btn_directors)).perform(click());
+
+        onView(withId(R.id.fragment_directors_parent)).check(matches(isDisplayed()));
+        pauseTestFor(500);
+
+        onView(withId(R.id.btn_star_actor)).perform(click());
+
+        onView(withId(R.id.fragment_star_actor_parent)).check(matches(isDisplayed()));
+        pauseTestFor(500);
+
     }
 
-    @Test
-    public void test_visibility_title_nextButton() {
-        onView(withId(R.id.activity_main_title)).check(matches(isDisplayed()));
-
-        onView(withId(R.id.button_next_activity))
-                .check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
+    private void pauseTestFor(long milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
-
-    @Test
-    public void test_navSecondaryActivity() {
-        onView(withId(R.id.button_next_activity)).perform(click());
-
-        onView(withId(R.id.secondary)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void test_backPress_to_mainActivity() {
-        onView(withId(R.id.button_next_activity)).perform(click());
-
-        onView(withId(R.id.secondary)).check(matches(isDisplayed()));
-
-        onView(withId(R.id.button_back)).perform(click());
-
-        onView(withId(R.id.main)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void test_backPress_to_mainActivity_pressBack() {
-        ActivityScenario<MainActivity> activityScenario = ActivityScenario.launch(MainActivity.class);
-
-        onView(withId(R.id.button_next_activity)).perform(click());
-
-        onView(withId(R.id.secondary)).check(matches(isDisplayed()));
-
-        pressBack();
-
-        onView(withId(R.id.main)).check(matches(isDisplayed()));
-    }
-
 }

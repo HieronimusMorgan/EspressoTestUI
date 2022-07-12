@@ -6,6 +6,9 @@
         <entry key="..\:/New folder/EspressoTestUI/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/New folder/EspressoTestUI/app/src/main/res/layout/activity_secondary.xml" value="0.1859375" />
         <entry key="..\:/New folder/EspressoTestUI/app/src/main/res/layout/activity_secondary2.xml" value="0.2" />
+        <entry key="..\:/New folder/EspressoTestUI/app/src/main/res/layout/fragment_directors.xml" value="0.2" />
+        <entry key="..\:/New folder/EspressoTestUI/app/src/main/res/layout/fragment_movie_detail.xml" value="0.2" />
+        <entry key="..\:/New folder/EspressoTestUI/app/src/main/res/layout/fragment_star_actors.xml" value="0.2" />
       </map>
     </option>
   </component>
